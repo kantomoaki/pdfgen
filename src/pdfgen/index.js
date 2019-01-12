@@ -96,6 +96,7 @@ exports.pdfgen = function pdfgen(req, res) {
       if (response && response['permissions'] && response['permissions'].includes(permission)) {
         authorized(res);
       } else {
+        console.log(response);
         console.log('---Error below---');
         console.log(err);
         res.status(403).send("The request is forbidden.");
