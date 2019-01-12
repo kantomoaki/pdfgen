@@ -37,10 +37,10 @@ function createPDF() {
   
     const fontDescriptors = {
       Roboto: {
-        normal:       './fonts/KFOmCnqEu92Fr1Mu72xKOzY.woff2',
-        bold:         './fonts/KFOmCnqEu92Fr1Mu72xKOzY.woff2',
-        italics:      './fonts/KFOmCnqEu92Fr1Mu72xKOzY.woff2',
-        bolditalics:  './fonts/KFOmCnqEu92Fr1Mu72xKOzY.woff2',
+        normal:       './fonts/ipag.ttf',
+        bold:         './fonts/ipag.ttf',
+        italics:      './fonts/ipag.ttf',
+        bolditalics:  './fonts/ipag.ttf',
       }
   };
     
