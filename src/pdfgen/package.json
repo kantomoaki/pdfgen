@@ -1,0 +1,13 @@
+{
+  "name": "pdfgen",
+  "version": "0.0.1",
+  "dependencies": {
+    "@google-cloud/debug-agent": "2.4.0",
+    "@google-cloud/storage": "1.6.0",
+    "googleapis": "21.2",
+    "node-fetch": "2.1.2",
+    "pdfmake": "0.1.36",
+    "request": "2.85.0",
+    "uuid": "3.2.1"
+  }
+}
