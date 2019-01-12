@@ -5,7 +5,7 @@ const request     = require('request');
 const PdfPrinter  = require('pdfmake/src/printer');
 const uuidv4      = require('uuid/v4');
 const Google      = require('googleapis');
-const BUCKET      = 'pdfgen'; // Replace with name of your bucket
+const BUCKET      = 'pdfgen-bucket-0101'; // Replace with name of your bucket
 
 /*------------------------------------------------------
 - verify if the access token is valid or not.
