@@ -20,7 +20,7 @@ function getAccessToken(header) {
     }
   }
   return null;
-}
+}  
 
 function createPDF() {
   // Return a new promise.
@@ -30,6 +30,13 @@ function createPDF() {
       pageSize: 'A4',
       pageMargins: [ 40, 60, 40, 60 ],
       content: [
+        { text: 'First paragraph',
+          fontSize: 15
+        },
+        { text: 'Second paragraph',
+          fontSize: 12
+        },
+
         'First paragraph',
         'Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines'
       ]
