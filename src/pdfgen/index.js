@@ -29,7 +29,7 @@ function createPDF() {
   // Return a new promise.
   return new Promise(function(resolve, reject) {
     let pdfCreation = false;
-    let foamatConfig = require('./forats/form1.js');
+    let foamatConfig = require('./formats/form1.js');
     let foamatObj = JSON.parse(foamatConfig);
 
     foamatObj.content[0].text = 'a';                      // 発行日
@@ -48,7 +48,7 @@ function createPDF() {
         bolditalics:  './fonts/ipag.ttf',
       }
   };
-    
+
   const printer = new PdfPrinter(fontDescriptors);
   const pdfDoc  = printer.createPdfKitDocument(docDefinition);
   const storage = new Storage();
