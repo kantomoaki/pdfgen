@@ -26,13 +26,13 @@ function getAccessToken(header) {
 // pdfの生成
 function createPDF(str_a) {
   console.log("02-02");
-  console.log(str_a);
+  console.log(req.body.issued_at);
   // Return a new promise.
   return new Promise(function(resolve, reject) {
     var pdfCreation = false;
     var foamatObj = require('./formats/form1.json');
 
-    foamatObj.content[0].text = str_a;                          // 発行日
+    foamatObj.content[0].text = req.body.issued_at;                          // 発行日
 /*
     foamatObj.content[1].text = req.body.estimate_num;                       // 見積番号
     foamatObj.content[2].text = req.body.corp_name;                          // 社名
