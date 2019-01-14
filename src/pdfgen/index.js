@@ -31,9 +31,9 @@ function createPDF() {
   // Return a new promise.
   return new Promise(function(resolve, reject) {
     console.log('02-1');
-    let pdfCreation = false;
+    var pdfCreation = false;
     console.log('02-2');
-    let foamatConfig = require('./formats/form1.js');
+    var foamatConfig = require('./formats/form1.json');
     console.log('02-3');
     let foamatObj = JSON.parse(foamatConfig);
 
