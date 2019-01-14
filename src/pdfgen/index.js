@@ -42,7 +42,7 @@ function createPDF() {
     foamatObj.content[1].text = 'b';                      // 見積番号
     foamatObj.content[2].text = 'c';                      // 社名
     foamatObj.content[4].columns[0].text[3].text = 'd';   // 有効期限
-    foamatObj.content[8].table.body[2].text = 'e';        // 備考
+    foamatObj.content[7].table.body[2].text = 'e';        // 備考
 
     console.log('04');
     var docDefinition = JSON.stringify(foamatObj);
