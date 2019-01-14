@@ -25,6 +25,8 @@ function getAccessToken(header) {
 
 // pdfの生成
 function createPDF(req) {
+  console.log("02-02");
+  console.log(req.body.issued_at);
   // Return a new promise.
   return new Promise(function(resolve, reject) {
     var pdfCreation = false;
@@ -67,6 +69,8 @@ function createPDF(req) {
 }
 
 function authorized(res, req) {
+  console.log("02-01");
+  console.log(req.body.issued_at);
   createPDF(req)
   .then(function(file_name){
     res.status(200).send("The request was successfully authorized and pdf generated.\n You can find your pdf in the cloud storage " + file_name);
