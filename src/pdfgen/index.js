@@ -84,6 +84,7 @@ function authorized(res, req) {
 exports.pdfgen = function pdfgen(req, res) {
   console.log('this is the request');
   console.log(req);
+  console.log(req.body.issuedAt);
 
   var accessToken = getAccessToken(req.get('Authorization'));
   var oauth = new Google.auth.OAuth2();
