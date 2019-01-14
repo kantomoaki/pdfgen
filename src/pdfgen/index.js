@@ -33,11 +33,12 @@ function createPDF(str_a) {
     var foamatObj = require('./formats/form1.json');
 
     foamatObj.content[0].text = str_a;                          // 発行日
+/*
     foamatObj.content[1].text = req.body.estimate_num;                       // 見積番号
     foamatObj.content[2].text = req.body.corp_name;                          // 社名
     foamatObj.content[4].columns[0].text[3].text = req.body.effective_name;  // 有効期限
     foamatObj.content[7].table.body[1].text = req.body.note;                 // 備考
-
+*/
     var docDefinition = JSON.stringify(foamatObj);
     const fontDescriptors = {
       Roboto: {
