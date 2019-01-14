@@ -12,7 +12,6 @@ const BUCKET      = 'pdfgen-01-01'; // bucket-name
   2. PDFを生成する。
   3. PDFをbuketに保存する。
 --------------------------------------------------------*/
-
 // アクセストークンの抽出
 function getAccessToken(header) {
   if (header) {
@@ -25,26 +24,18 @@ function getAccessToken(header) {
 }
 
 // pdfの生成
-function createPDF() {
-  console.log('01');
-
+function createPDF(req) {
   // Return a new promise.
   return new Promise(function(resolve, reject) {
-    console.log('02-1');
     var pdfCreation = false;
-    console.log('02-2');
     var foamatObj = require('./formats/form1.json');
-    console.log('02-3');
-//    var foamatObj = JSON.parse(foamatConfig);
 
-    console.log('03');
-    foamatObj.content[0].text = 'a';                      // 発行日
-    foamatObj.content[1].text = 'b';                      // 見積番号
-    foamatObj.content[2].text = 'c';                      // 社名
-    foamatObj.content[4].columns[0].text[3].text = 'd';   // 有効期限
-    foamatObj.content[7].table.body[1].text = 'e';        // 備考
+    foamatObj.content[0].text = req.body.issuedAt;                          // 発行日
+    foamatObj.content[1].text = req.body.estimateNum;                       // 見積番号
+    foamatObj.content[2].text = req.body.corpName;                          // 社名
+    foamatObj.content[4].columns[0].text[3].text = req.body.effectiveDate;  // 有効期限
+    foamatObj.content[7].table.body[1].text = req.body.note;                // 備考
 
-    console.log('04');
     var docDefinition = JSON.stringify(foamatObj);
     const fontDescriptors = {
       Roboto: {
@@ -55,18 +46,12 @@ function createPDF() {
       }
   };
 
-  console.log('05');
   const printer = new PdfPrinter(fontDescriptors);
-  console.log('05-1');
   const pdfDoc  = printer.createPdfKitDocument(foamatObj);
-  console.log('05-2');
   const storage = new Storage();
-  console.log('05-3');
   let file_name = uuidv4() + '.pdf';
-  console.log('05-4');
   const myPdfFile = storage.bucket(BUCKET).file(file_name);
 
-  console.log('06');
   pdfDoc
     .pipe(myPdfFile.createWriteStream())
     .on('finish', function (){
@@ -81,8 +66,8 @@ function createPDF() {
   });
 }
 
-function authorized(res) {
-  createPDF()
+function authorized(res, req) {
+  createPDF(req)
   .then(function(file_name){
     res.status(200).send("The request was successfully authorized and pdf generated.\n You can find your pdf in the cloud storage " + file_name);
   })
@@ -110,7 +95,7 @@ exports.pdfgen = function pdfgen(req, res) {
     {bucket: BUCKET, permissions: [permission], auth: oauth}, {},
     function (err, response) {
       if (response && response['permissions'] && response['permissions'].includes(permission)) {
-        authorized(res);
+        authorized(res, req);
       } else {
         console.log(response);
         console.log('---Error below---');
