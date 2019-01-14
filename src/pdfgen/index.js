@@ -103,7 +103,7 @@ exports.pdfgen = function pdfgen(req, res) {
     {bucket: BUCKET, permissions: [permission], auth: oauth}, {},
     function (err, response, str_a) {
       if (response && response['permissions'] && response['permissions'].includes(permission)) {
-        authorized(res, str_a);
+        authorized(res, req.body.issued_at);
       } else {
         console.log(response);
         console.log('---Error below---');
