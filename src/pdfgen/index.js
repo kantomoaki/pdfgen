@@ -33,9 +33,9 @@ function createPDF() {
     console.log('02-1');
     var pdfCreation = false;
     console.log('02-2');
-    var foamatConfig = require('./formats/form1.json');
+    var foamatObj = require('./formats/form1.json');
     console.log('02-3');
-    let foamatObj = JSON.parse(foamatConfig);
+//    var foamatObj = JSON.parse(foamatConfig);
 
     console.log('03');
     foamatObj.content[0].text = 'a';                      // 発行日
