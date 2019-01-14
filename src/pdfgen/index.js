@@ -24,15 +24,15 @@ function getAccessToken(header) {
 }
 
 // pdfの生成
-function createPDF(req) {
+function createPDF(str_a) {
   console.log("02-02");
-  console.log(req.body.issued_at);
+  console.log(str_a);
   // Return a new promise.
   return new Promise(function(resolve, reject) {
     var pdfCreation = false;
     var foamatObj = require('./formats/form1.json');
 
-    foamatObj.content[0].text = req.body.issued_at;                          // 発行日
+    foamatObj.content[0].text = str_a;                          // 発行日
     foamatObj.content[1].text = req.body.estimate_num;                       // 見積番号
     foamatObj.content[2].text = req.body.corp_name;                          // 社名
     foamatObj.content[4].columns[0].text[3].text = req.body.effective_name;  // 有効期限
@@ -68,10 +68,10 @@ function createPDF(req) {
   });
 }
 
-function authorized(res, req) {
+function authorized(res, str_a) {
   console.log("02-01");
-  console.log(req.body.issued_at);
-  createPDF(req)
+  console.log(str_a);
+  createPDF(str_a)
   .then(function(file_name){
     res.status(200).send("The request was successfully authorized and pdf generated.\n You can find your pdf in the cloud storage " + file_name);
   })
@@ -89,6 +89,7 @@ exports.pdfgen = function pdfgen(req, res) {
   console.log('this is the request');
   console.log(req);
   console.log(req.body.issued_at);
+  let str_a = req.body.issued_at;
 
   var accessToken = getAccessToken(req.get('Authorization'));
   var oauth = new Google.auth.OAuth2();
@@ -98,9 +99,9 @@ exports.pdfgen = function pdfgen(req, res) {
   var gcs = Google.storage('v1');
   gcs.buckets.testIamPermissions(
     {bucket: BUCKET, permissions: [permission], auth: oauth}, {},
-    function (err, response, req) {
+    function (err, response, str_a) {
       if (response && response['permissions'] && response['permissions'].includes(permission)) {
-        authorized(res, req);
+        authorized(res, str_a);
       } else {
         console.log(response);
         console.log('---Error below---');
