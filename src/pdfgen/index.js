@@ -57,9 +57,13 @@ function createPDF() {
 
   console.log('05');
   const printer = new PdfPrinter(fontDescriptors);
+  console.log('05-1');
   const pdfDoc  = printer.createPdfKitDocument(docDefinition);
+  console.log('05-2');
   const storage = new Storage();
+  console.log('05-3');
   let file_name = uuidv4() + '.pdf';
+  console.log('05-4');
   const myPdfFile = storage.bucket(BUCKET).file(file_name);
 
   console.log('06');
