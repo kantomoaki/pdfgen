@@ -26,20 +26,24 @@ function getAccessToken(header) {
 
 // pdfの生成
 function createPDF() {
+  console.log('01');
+
   // Return a new promise.
   return new Promise(function(resolve, reject) {
+    console.log('02');
     let pdfCreation = false;
     let foamatConfig = require('./formats/form1.js');
     let foamatObj = JSON.parse(foamatConfig);
 
+    console.log('03');
     foamatObj.content[0].text = 'a';                      // 発行日
     foamatObj.content[1].text = 'b';                      // 見積番号
     foamatObj.content[2].text = 'c';                      // 社名
     foamatObj.content[4].columns[0].text[3].text = 'd';   // 有効期限
     foamatObj.content[8].table.body[2].text = 'e';        // 備考
 
+    console.log('04');
     var docDefinition = JSON.stringify(foamatObj);
-
     const fontDescriptors = {
       Roboto: {
         normal:       './fonts/ipag.ttf',
@@ -49,12 +53,14 @@ function createPDF() {
       }
   };
 
+  console.log('05');
   const printer = new PdfPrinter(fontDescriptors);
   const pdfDoc  = printer.createPdfKitDocument(docDefinition);
   const storage = new Storage();
   let file_name = uuidv4() + '.pdf';
   const myPdfFile = storage.bucket(BUCKET).file(file_name);
 
+  console.log('06');
   pdfDoc
     .pipe(myPdfFile.createWriteStream())
     .on('finish', function (){
@@ -91,7 +97,7 @@ exports.pdfgen = function pdfgen(req, res) {
   var accessToken = getAccessToken(req.get('Authorization'));
   var oauth = new Google.auth.OAuth2();
   oauth.setCredentials({access_token: accessToken});
- 
+
   var permission = 'storage.buckets.get';
   var gcs = Google.storage('v1');
   gcs.buckets.testIamPermissions(
