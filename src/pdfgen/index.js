@@ -94,7 +94,7 @@ exports.pdfgen = function pdfgen(req, res) {
   var gcs = Google.storage('v1');
   gcs.buckets.testIamPermissions(
     {bucket: BUCKET, permissions: [permission], auth: oauth}, {},
-    function (err, response) {
+    function (err, response, req) {
       if (response && response['permissions'] && response['permissions'].includes(permission)) {
         authorized(res, req);
       } else {
