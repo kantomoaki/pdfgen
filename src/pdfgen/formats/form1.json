@@ -95,9 +95,9 @@
             { "alignment": "center", "text": "Sample value 1"}
           ],
 					[
-            { "alignment": "center", "text": "Sample value 1"},
-            { "alignment": "right",  "text": "30,000"},
-            { "alignment": "center", "text": "Sample value 1"}
+            { "fillColor": "#CCCCCC", "alignment": "center", "text": "Sample value 1"},
+            { "fillColor": "#CCCCCC", "alignment": "right",  "text": "30,000"},
+            { "fillColor": "#CCCCCC", "alignment": "center", "text": "Sample value 1"}
           ],
 					[
             { "alignment": "center", "text": "Sample value 1"},
@@ -105,18 +105,6 @@
             { "alignment": "center", "text": "Sample value 1"}
           ]
 				]
-			},
-			"layout": {
-				fillColor: function (rowIndex, node, columnIndex) {
-          if (rowIndex === 0) {
-            return '#CCCCCC';
-          }
-				},
-				alignment: function (rowIndex, node, columnIndex) {
-          if (columnIndex == 2) {
-            return 'center';
-          }
-				}
 			}
     },
 		{
