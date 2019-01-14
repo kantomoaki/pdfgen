@@ -122,7 +122,7 @@
         "heights": [20, 120],
         "body": [
           [ { "bold": true,  "alignment": "center", "fillColor": "#CCCCCC", "text": "Bold value"} ],
-          [ { "bold": false, "alignment": "left"  , "fillColor": "#000000", "text": "Bold value"} ]
+          [ { "bold": false, "alignment": "left"  , "fillColor": "#FFFFFF", "text": "Bold value"} ]
         ]
       }
     },
