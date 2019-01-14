@@ -91,6 +91,7 @@ exports.pdfgen = function pdfgen(req, res) {
   console.log(req);
   console.log(req.body.issued_at);
   var str_a = req.body.issued_at;
+  console.log(str_a);
 
   var accessToken = getAccessToken(req.get('Authorization'));
   var oauth = new Google.auth.OAuth2();
